@@ -15,8 +15,8 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping("/signup")
-    public String signUp(@Valid Member.SignUpRequest signUpRequest) {
-        memberService.signUp(signUpRequest);
+    public String signUp(@Valid Member.CreateRequest createRequest) {
+        memberService.signUp(createRequest);
         return "redirect:/";
     }
 }

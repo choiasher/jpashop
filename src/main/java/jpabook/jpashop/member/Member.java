@@ -32,6 +32,25 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    @Getter
+    static final class CreateRequest {
+        @NotBlank
+        private String name;
+        private Address address;
+    }
+
+    @Getter
+    static final class CreateResponse {
+        private final String name;
+        private final Address address;
+
+        public CreateResponse(Member member) {
+            this.name = member.getName();
+            this.address = member.getAddress();
+        }
+    }
+
+
     public static Member createMember(String name, Address address) {
         Member member = new Member();
         member.setName(name);
@@ -39,18 +58,12 @@ public class Member {
         return member;
     }
 
-    public static Member createMember(SignUpRequest signUpRequest) {
+    public static Member createMember(CreateRequest signUpRequest) {
         Member member = new Member();
         member.setName(signUpRequest.getName());
         member.setAddress( signUpRequest.getAddress());
         return member;
     }
 
-    @Getter
-    static class SignUpRequest {
-        @NotBlank
-        String name;
-        Address address;
-    }
 
 }

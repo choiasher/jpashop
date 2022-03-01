@@ -42,7 +42,7 @@ public class MemberService {
     }
 
     @Transactional
-    public Member signUp(Member.SignUpRequest signUpRequest) {
-        return memberRepository.save(Member.createMember(signUpRequest));
+    public Member signUp(Member.CreateRequest createRequest) {
+        return memberRepository.save(Member.createMember(createRequest));
     }
 }
